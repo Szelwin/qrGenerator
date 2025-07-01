@@ -4,6 +4,7 @@ gui_app.py
 
 Tiny Tkinter shell around qr_document.build_and_save().
 """
+
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from pathlib import Path
@@ -23,11 +24,15 @@ class QRApp(tk.Tk):
     def _make_widgets(self):
         paddings = dict(padx=8, pady=4)
 
-        ttk.Label(self, text="Start number (inclusive)").grid(row=0, column=0, **paddings, sticky="w")
+        ttk.Label(self, text="Start number (inclusive)").grid(
+            row=0, column=0, **paddings, sticky="w"
+        )
         self.start_entry = ttk.Entry(self, width=20)
         self.start_entry.grid(row=0, column=1, **paddings)
 
-        ttk.Label(self, text="End number (exclusive)").grid(row=1, column=0, **paddings, sticky="w")
+        ttk.Label(self, text="End number (exclusive)").grid(
+            row=1, column=0, **paddings, sticky="w"
+        )
         self.end_entry = ttk.Entry(self, width=20)
         self.end_entry.grid(row=1, column=1, **paddings)
 
@@ -40,12 +45,14 @@ class QRApp(tk.Tk):
     def _on_generate(self):
         try:
             start = int(self.start_entry.get())
-            end   = int(self.end_entry.get())
+            end = int(self.end_entry.get())
             if end <= start:
                 raise ValueError
 
         except ValueError:
-            messagebox.showerror("Invalid input", "Please enter two integers where end > start.")
+            messagebox.showerror(
+                "Invalid input", "Please enter two integers where end > start."
+            )
             return
 
         out_path = filedialog.asksaveasfilename(

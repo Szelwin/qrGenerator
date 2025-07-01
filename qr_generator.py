@@ -10,6 +10,7 @@ or treat this file as a CLI:
 
 That would create “QR_1000_1200.docx”.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -29,17 +30,18 @@ from docx.shared import Mm, Pt, Inches
 # ──────────────────────────────────────────────────────────────────────────────
 def _generate_qr_png(data: int | str, out_path: Path) -> None:
     """Create a tiny temporary PNG for *one* QR code."""
-    qr = qrcode.QRCode(version=1,
-                       error_correction=ERROR_CORRECT_L,
-                       box_size=5,
-                       border=2)
+    qr = qrcode.QRCode(
+        version=1, error_correction=ERROR_CORRECT_L, box_size=5, border=2
+    )
     qr.add_data(data)
     qr.make(fit=False)
     img = qr.make_image(fill_color="black", back_color="white")
     img.save(out_path)
 
 
-def _chunk_range(start: int, end_exclusive: int, size: int = 100) -> Iterable[tuple[int, int]]:
+def _chunk_range(
+    start: int, end_exclusive: int, size: int = 100
+) -> Iterable[tuple[int, int]]:
     """
     Yield (chunk_start, chunk_end_inclusive) for `range(start, end_exclusive)`
     in blocks of `size`. Works even if the last chunk is < size.
