@@ -21,7 +21,7 @@ jobs:
           pip install pyinstaller
       - name: Package application
         run: |
-          pyinstaller --noconsole --onefile --name qr_gui qr_gui.py
+          pyinstaller --noconsole --onefile --name qr_gui --hidden-import=PIL qr_gui.py
       - uses: actions/upload-artifact@v4
         with:
           name: qr_gui-windows
@@ -41,7 +41,7 @@ jobs:
           pip install pyinstaller
       - name: Package application
         run: |
-          pyinstaller --windowed --onefile --name qr_gui qr_gui.py
+          pyinstaller --windowed --onefile --name qr_gui --hidden-import=PIL qr_gui.py
       - uses: actions/upload-artifact@v4
         with:
           name: qr_gui-macos

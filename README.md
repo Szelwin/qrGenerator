@@ -15,7 +15,7 @@ You can also build locally:
 ```bash
 pip install -r requirements.txt
 pip install pyinstaller
-pyinstaller --onefile --windowed qr_gui.py
+pyinstaller --onefile --windowed --hidden-import=PIL qr_gui.py
 ```
 
 The executable will be placed in the `dist/` directory.
