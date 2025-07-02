@@ -8,7 +8,9 @@ core logic and a small CLI.
 
 A GitHub Actions workflow builds standalone executables for Windows and macOS
 using [PyInstaller](https://pyinstaller.org/). Each build runs on its native OS
-and uploads the resulting binary as an artifact.
+and uploads the resulting binary as an artifact. Pushes to the `main` branch
+also update the `Latest` release so the most recent binaries are easily
+available from the Releases page.
 
 You can also build locally:
 
